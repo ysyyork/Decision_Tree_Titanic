@@ -3,6 +3,7 @@ import math
 import operator
 
 def calc_entropy(data_set):
+    #the data_set is a list
     num_entries = len(data_set)
 
     label_counts = {}
@@ -20,12 +21,13 @@ def calc_entropy(data_set):
     return entropy    
 
 
-def split_data_set(data_set, index, value):
+def split_data_set(data_set, col, value):
+    #split the data with specific index equaling value and then remove this column
     re_data_set = []
     for feat_vec in data_set:
-        if feat_vec[index] == value:
-            reduced_feat_vec = feat_vec[:index]
-            reduced_feat_vec.extend(feat_vec[index+1:])
+        if feat_vec[col] == value:
+            reduced_feat_vec = feat_vec[:col]
+            reduced_feat_vec.extend(feat_vec[col+1:])
             re_data_set.append(reduced_feat_vec)
     return re_data_set
 
