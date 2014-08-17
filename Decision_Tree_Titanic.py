@@ -128,5 +128,6 @@ def getResult(train_file_path, test_file_path):
     print classify_all(tree, test_labels, test_data)
 
 if __name__=='__main__':
+    #It is from kaggle Titanic project
     getResult('./train.csv', './test.csv')
     
