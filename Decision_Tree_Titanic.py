@@ -107,12 +107,12 @@ def classify_all(tree, labels, data_set):
 def get_dataset(file_path, is_train):
     df = pd.read_csv(file_path)
     if is_train:
-        df = df[['Sex', 'Pclass', 'Survived']]
+        df = df[['Sex', 'SibSp', 'Survived']]
         labels = list(df.columns)
         labels.pop(-1)
         data_set = df.values.tolist()
     else:
-        df = df[['Sex', 'Pclass']]
+        df = df[['Sex', 'SibSp']]
         labels = list(df.columns)
         data_set = df.values.tolist()
     return data_set, labels
