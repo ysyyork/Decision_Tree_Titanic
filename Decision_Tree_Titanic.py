@@ -52,6 +52,7 @@ def choose_best_feat_to_split(data_set):
     return best_feat
 
 def majority(class_list):
+    #Count the majorty of this feature
     class_count = {}
     for vote in class_list:
         if vote not in class_count.keys():
