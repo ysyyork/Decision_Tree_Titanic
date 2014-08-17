@@ -117,7 +117,13 @@ def get_dataset(file_path, is_train):
         data_set = df.values.tolist()
     return data_set, labels
 
-def getResult(train_file_path, test_file_path):
+def get_passenger_id(path):
+    df = pd.read_csv(path)
+    df = df[['PassengerId']]
+    df_to_list = df.values.tolist()
+    return df_to_list
+
+def get_result(train_file_path, test_file_path):
     train_data, train_labels = get_dataset(train_file_path, True)
     test_data, test_labels = get_dataset(test_file_path, False)
     
@@ -125,9 +131,18 @@ def getResult(train_file_path, test_file_path):
     tree = create_tree(train_data, train_labels)
     print tree
 
-    print classify_all(tree, test_labels, test_data)
+    class_labels = classify_all(tree, test_labels, test_data)
+    print class_labels
+    passenger_id_list = get_passenger_id(test_file_path)
+    f = open('result.csv', 'w')
+    f.write('PassengerId,Survived\n')
+    i = 0
+    while i < len(passenger_id_list):
+        f.write(str(passenger_id_list[i][0]) + ',' + str(class_labels[i]) + '\n')
+        i += 1
+    f.close()
 
 if __name__=='__main__':
     #It is from kaggle Titanic project
-    getResult('./train.csv', './test.csv')
+    get_result('./data/train.csv', './data/test.csv')
     
